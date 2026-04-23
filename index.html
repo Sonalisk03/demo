@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>For You 🌸</title>
+<style>
+   body {
+     margin: 0;
+     overflow: hidden;
+     font-family: Arial;
+     background: linear-gradient(to top, #ffd6e0, #fff);
+     text-align: center;
+   }
+   h1 {
+     margin-top: 40px;
+     color: #ff4d6d;
+   }
+   button {
+     padding: 12px 25px;
+     font-size: 16px;
+     border: none;
+     border-radius: 20px;
+     background: #ff4d6d;
+     color: white;
+     cursor: pointer;
+   }
+   .flower {
+     position: absolute;
+     font-size: 30px;
+     animation: float 4s ease-in-out infinite;
+   }
+   @keyframes float {
+     0% { transform: translateY(0); }
+     50% { transform: translateY(-20px); }
+     100% { transform: translateY(0); }
+   }
+   #message {
+     margin-top: 20px;
+     color: #333;
+     font-size: 18px;
+   }
+</style>
+</head>
+<body>
+<h1>Click to grow our garden 🌸</h1>
+<button onclick="createFlower()">Grow a Flower</button>
+<p id="message"></p>
+<script>
+   const messages = [
+     "I love your smile 😊",
+     "You make my days better",
+     "You're my safe place",
+     "Life feels lighter with you",
+     "You're my favorite person ❤️"
+   ];
+   function createFlower() {
+     const flower = document.createElement("div");
+     flower.className = "flower";
+     flower.innerHTML = "🌸";
+     flower.style.left = Math.random() * window.innerWidth + "px";
+     flower.style.top = Math.random() * window.innerHeight + "px";
+     document.body.appendChild(flower);
+     const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+     document.getElementById("message").innerText = randomMessage;
+   }
+</script>
+</body>
+</html>
