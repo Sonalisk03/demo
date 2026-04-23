@@ -1,67 +1,81 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>For You 🌸</title>
+<title>How well do you know me? ❤️</title>
 <style>
    body {
-     margin: 0;
-     overflow: hidden;
      font-family: Arial;
-     background: linear-gradient(to top, #ffd6e0, #fff);
      text-align: center;
+     background: #ffe6e6;
+     padding: 30px;
    }
    h1 {
-     margin-top: 40px;
      color: #ff4d6d;
    }
+   .question {
+     margin: 20px 0;
+   }
    button {
-     padding: 12px 25px;
-     font-size: 16px;
+     padding: 10px 20px;
+     margin: 10px;
      border: none;
-     border-radius: 20px;
+     border-radius: 10px;
      background: #ff4d6d;
      color: white;
      cursor: pointer;
    }
-   .flower {
-     position: absolute;
-     font-size: 30px;
-     animation: float 4s ease-in-out infinite;
-   }
-   @keyframes float {
-     0% { transform: translateY(0); }
-     50% { transform: translateY(-20px); }
-     100% { transform: translateY(0); }
-   }
-   #message {
-     margin-top: 20px;
-     color: #333;
-     font-size: 18px;
-   }
 </style>
 </head>
 <body>
-<h1>Click to grow our garden 🌸</h1>
-<button onclick="createFlower()">Grow a Flower</button>
-<p id="message"></p>
+<h1>Lets test DK - How well do you know Sonu? 💕</h1>
+<div id="quiz"></div>
+<button onclick="submitQuiz()">Submit</button>
+<h2 id="result"></h2>
 <script>
-   const messages = [
-     "I love your smile 😊",
-     "You make my days better",
-     "You're my safe place",
-     "Life feels lighter with you",
-     "You're my favorite person ❤️"
-   ];
-   function createFlower() {
-     const flower = document.createElement("div");
-     flower.className = "flower";
-     flower.innerHTML = "🌸";
-     flower.style.left = Math.random() * window.innerWidth + "px";
-     flower.style.top = Math.random() * window.innerHeight + "px";
-     document.body.appendChild(flower);
-     const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-     document.getElementById("message").innerText = randomMessage;
+const questions = [
+ {
+   q: "What is my hidden talent?",
+   options: ["Overthinking", "fighting", "Loving by irritating"],
+   answer: "Loving by irritating"
+ },
+ {
+   q: "what Happens if you dont reply me fast?",
+   options: ["I wait", "Send 100 msgs", "Blackmail to block"],
+   answer: "Send 100 msgs"
+ },
+ {
+   q: "what annoys me the most?",
+   options: ["you ignoring me", "you being busy", "you sleeping"],
+   answer: "You sleeping"
+ }
+];
+const quizDiv = document.getElementById("quiz");
+questions.forEach((item, index) => {
+ let html = `<div class='question'><p>${item.q}</p>`;
+ item.options.forEach(opt => {
+   html += `<input type="radio" name="q${index}" value="${opt}"> ${opt}<br>`;
+ });
+ html += `</div>`;
+ quizDiv.innerHTML += html;
+});
+function submitQuiz() {
+ let score = 0;
+ questions.forEach((item, index) => {
+   const answer = document.querySelector(`input[name="q${index}"]:checked`);
+   if (answer && answer.value === item.answer) {
+     score++;
    }
+ });
+ let resultText = "";
+ if (score === questions.length) {
+   resultText = "Thats 3/3 You know me perfectly 😍 I love you so much ❤️";
+ } else if (score >= 2) {
+   resultText = "2/3 You know me pretty well 😌❤️";
+ } else {
+   resultText = "Hmm… you need to learn more about me 😄❤️";
+ }
+ document.getElementById("result").innerText = resultText;
+}
 </script>
 </body>
 </html>
